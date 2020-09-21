@@ -1,7 +1,9 @@
-FROM node:8-alpine
-RUN mkdir -p /usr/src/app
+FROM node:10
 WORKDIR /usr/src/app
-COPY . .
+
+COPY package*.json ./
 RUN npm install
+COPY . .
+RUN npm run build
 EXPOSE 3000
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]
