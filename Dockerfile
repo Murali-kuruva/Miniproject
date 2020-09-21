@@ -1,8 +1,7 @@
-FROM node:12-alpine as node
-WORKDIR /app
-COPY package.json /app
-RUN npm install
-
+FROM node:8-alpine
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 COPY . .
-FROM nginx:1.17.1-alpine
-COPY --from=node /app/dist/app /usr/share/nginx/html
+RUN npm install
+EXPOSE 3000
+CMD [ "node", "server.js" ]
