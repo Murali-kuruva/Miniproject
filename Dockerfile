@@ -1,9 +1,9 @@
 FROM node:10
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./app
 RUN npm install
-COPY . .
+COPY . /app
 RUN npm run build
 EXPOSE 3000
 CMD [ "npm", "start" ]
